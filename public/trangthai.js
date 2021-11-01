@@ -1,3 +1,4 @@
+// ===== component test Props va State =============================================================
 class MyComState extends React.Component {
 
     constructor(props) {
@@ -19,7 +20,7 @@ class MyComState extends React.Component {
     }
 
 
-    // tao mot function trong compoment
+    //========= tao mot function trong compoment =============================
     render() {
         return (
             <div>
@@ -44,7 +45,7 @@ class MyComState extends React.Component {
     }
 };
 
-//============================================================================================
+//======== component test Ref, State, Onclick, function ====================================================================================
 
 class MyComRefs extends React.Component {
     constructor(props) {
@@ -76,18 +77,47 @@ class MyComRefs extends React.Component {
 
 }
 
+class ChangeImage extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            pic: 1,
+        }
+    }
 
-//=== goi compoment ===
+    changePic = () => {
+        this.setState({ pic: (this.state.pic % 3) + 1 });
+    }
+
+    render() {
+        return (
+            <div>
+                <h1> Images</h1>
+                <img style={{width:"400px"}} src={"./images/" + this.state.pic + ".jpg"} />
+            </div>
+
+        );
+    }
+
+    componentDidMount() {
+        setInterval(this.changePic, 1000);
+    }
+}
+
+//=== ****** phan chinh goi cac component de show o trang home ******========================================
 ReactDOM.render(
     <div>
-        <h1 style={{ color: "red", fontSize:"4rem" }} >react js </h1>
+        <h1 style={{ color: "red", fontSize: "4rem" }} >react js </h1>
         <MyComState lop="PHP " ></MyComState>
-
         <hr></hr>
-        
         <MyComRefs />
+        <hr></hr>
+        <ChangeImage />
     </div>,
     document.getElementById("root")
 );
+
+
+
 
 
